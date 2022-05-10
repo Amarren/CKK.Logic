@@ -19,7 +19,7 @@ namespace CKK.Logic.Models
             return _id;
         }
 
-        public void SetId(int setid) //sets "id" = input id when "SetId" method is called
+        public void SetId(int setid) //sets "id" = to input id when "SetId" method is called
         {
             _id = setid;
         }
@@ -29,7 +29,7 @@ namespace CKK.Logic.Models
             return _name;
         }
 
-        public void SetName(string setname) //sets "_name" = input name when "SetName" method is called
+        public void SetName(string setname) //sets "_name" = to input name when "SetName" method is called
         {
             _name = setname;
         }
@@ -87,30 +87,30 @@ namespace CKK.Logic.Models
                 return _product3;
             }
             
-            else //if input is invalid or all slots are empty returns null
+            else //if input is invalid returns null
             {
                 return null;
             }
         }
 
-        public Product FindStoreItemById(int id) //checks if the given id matches _product1, _product2, or _product3 in order
+        public Product FindStoreItemById(int id) //checks if the input id matches _product1, _product2, or _product3 in order
         {
-            if(_product1.GetId() == id) //test to see if product in slot "_product1" matches input id
+            if(_product1.GetId() == id) //test to see if the product in slot "_product1" matches input id
             {
                 return _product1;
             }
 
-            else if(_product2.GetId() == id) //test to see if product in slot "_product2" matches input id
+            else if(_product2.GetId() == id) //test to see if the product in slot "_product2" matches input id
             {
                 return _product2;
             }
 
-            else if(_product3.GetId() == id) //test to see if product in slot "_product3" matches input id
+            else if(_product3.GetId() == id) //test to see if the product in slot "_product3" matches input id
             {
                 return _product3;
             }
 
-            else //if none of the products in any slot match the input id then returns null
+            else //if none of the products in any of the slots match the input id then returns null
             {
                 return null;
             }

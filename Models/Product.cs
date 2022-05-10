@@ -17,7 +17,7 @@ namespace CKK.Logic.Models
             return _id;
         }
 
-        public void SetId(int id) //sets "_id" = to input when "SetId" method is called
+        public void SetId(int id) //sets "_id" = to input id when "SetId" method is called
         {
             _id = id;
         }
@@ -27,7 +27,7 @@ namespace CKK.Logic.Models
             return _name;
         }
 
-        public void SetName(string name) //sets "_name" = to input when "SetName" method is called
+        public void SetName(string name) //sets "_name" = to input name when "SetName" method is called
         {
             _name = name;
         }
@@ -37,7 +37,7 @@ namespace CKK.Logic.Models
             return _price;
         }
 
-        public void SetPrice(decimal price) //sets "_price" = to input when "SetPrice" method is called
+        public void SetPrice(decimal price) //sets "_price" = to input price when "SetPrice" method is called
         {
             _price = price;
         }

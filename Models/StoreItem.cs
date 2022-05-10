@@ -17,12 +17,12 @@ namespace CKK.Logic.Models
             _quantity = quantity;
         }
 
-        public int GetQuantity() //returns "_quanttity" whe "GetQuantity" method is called
+        public int GetQuantity() //returns "_quanttity" when "GetQuantity" method is called
         {
             return _quantity;
         }
 
-        public void SetQuantity(int quantity) //sets "_quantity" = to input when "SetQuantity" method is called
+        public void SetQuantity(int quantity) //sets "_quantity" = to input quantity when "SetQuantity" method is called
         {
             _quantity = quantity;
         }
@@ -32,7 +32,7 @@ namespace CKK.Logic.Models
             return _product;
         }
 
-        public void SetProduct(Product product) //sets "_product" = to input when "SetProduct" method is called
+        public void SetProduct(Product product) //sets "_product" = to input product when "SetProduct" method is called
         {
             _product = product;
         }

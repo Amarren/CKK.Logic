@@ -22,7 +22,7 @@ namespace CKK.Logic.Models
             return _quantity;
         }
 
-        public void SetQuantity(int quantity) //sets "_quantity" = to input when "SetQuantity" method is called
+        public void SetQuantity(int quantity) //sets "_quantity" = to input quantity when "SetQuantity" method is called
         {
             _quantity = quantity;
         }
@@ -32,7 +32,7 @@ namespace CKK.Logic.Models
             return _product;
         }
 
-        public void SetProduct(Product product) //sets "_product" = to input when "Setproduct" method is called
+        public void SetProduct(Product product) //sets "_product" = to input product when "Setproduct" method is called
         {
             _product = product;
         }
