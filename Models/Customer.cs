@@ -8,39 +8,39 @@ namespace CKK.Logic.Models
 {
     public class Customer
     {
-        private int _id;
-        private string _name;
-        private string _address;
+        private int _id; //stores customer id
+        private string _name; //stores customer name
+        private string _address; //stores customer address
 
-        public int GetId()
+        public int GetId() //returns "_id" when "GetId" method is called
         {
             return _id;
         }
 
-        public void SetId(int id)
+        public void SetId(int id) //sets "_id" = to input when "SetId" method is called
         {
             _id = id;
         }
 
-        public string GetName()
+        public string GetName() //returns "_name" when "GetName" method is called
         {
             return _name;
         }
 
-        public void SetName(string name)
+        public void SetName(string name) //sets "_name" = to input when "SetName" method is called
         {
             _name = name;
         }
 
-        public string GetAddress()
+        public string GetAddress() //returns "_address" when "GetAddress" method is called
         {
             return _address;
         }
 
-        public void SetAddress(string address)
+        public void SetAddress(string address) //sets "_address" = to input when "SetAddress" method is called
         {
             _address = address;
         }
 
-    }
-}
+    }//end class Customer
+}//end namespace CKK.Logic.Models

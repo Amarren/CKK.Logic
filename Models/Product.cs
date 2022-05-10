@@ -8,39 +8,39 @@ namespace CKK.Logic.Models
 {
     public class Product
     {
-        private int _id;
-        private string _name;
-        private decimal _price;
+        private int _id; //stores product id
+        private string _name; //stores product name
+        private decimal _price; //stores product price
 
-        public int GetId()
+        public int GetId() //returns "_id" when "GetId" method is called
         {
             return _id;
         }
 
-        public void SetId(int id)
+        public void SetId(int id) //sets "_id" = to input when "SetId" method is called
         {
             _id = id;
         }
 
-        public string GetName()
+        public string GetName() //returns "_name" when "GetName" method is called
         {
             return _name;
         }
 
-        public void SetName(string name)
+        public void SetName(string name) //sets "_name" = to input when "SetName" method is called
         {
             _name = name;
         }
 
-        public decimal GetPrice()
+        public decimal GetPrice() //returns "_price" when "GetPrice" method is called
         {
             return _price;
         }
 
-        public void SetPrice(decimal price)
+        public void SetPrice(decimal price) //sets "_price" = to input when "SetPrice" method is called
         {
             _price = price;
         }
 
-    }
-}
+    }//end class Product
+}//end namespace CKK.Logic.Models

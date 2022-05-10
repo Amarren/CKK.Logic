@@ -8,33 +8,34 @@ namespace CKK.Logic.Models
 {
     public class StoreItem
     {
-        private Product _product;
-        private int _quantity;
+        private Product _product; //stores product
+        private int _quantity; //stores quantity of product
 
-        public StoreItem(Product product, int quantity)
+        public StoreItem(Product product, int quantity) //constructor for "StoreItem" class
         {
             _product = product;
             _quantity = quantity;
         }
 
-        public int GetQuantity()
+        public int GetQuantity() //returns "_quanttity" whe "GetQuantity" method is called
         {
             return _quantity;
         }
 
-        public void SetQuantity(int quantity)
+        public void SetQuantity(int quantity) //sets "_quantity" = to input when "SetQuantity" method is called
         {
             _quantity = quantity;
         }
 
-        public Product GetProduct()
+        public Product GetProduct() //returns "_product" when "GetProduct" method is called
         {
             return _product;
         }
 
-        public void SetProduct(Product product)
+        public void SetProduct(Product product) //sets "_product" = to input when "SetProduct" method is called
         {
             _product = product;
         }
-    }
-}
+
+    }//end class StoreItem
+}//end namespace CKK.Logic.Models
