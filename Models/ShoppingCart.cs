@@ -9,7 +9,7 @@ namespace CKK.Logic.Models
     public class ShoppingCart
     {
         private Customer Customer; //stores customer info
-        private ShoppingCartItem Product1; //first product slot
+        private ShoppingCartItem Product1 = null; //first product slot
         private ShoppingCartItem Product2; //second product slot
         private ShoppingCartItem Product3; //third product slot
 
