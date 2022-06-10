@@ -9,18 +9,18 @@ namespace CKK.Logic.Models
     public class ShoppingCart
     {
         private Customer Customer; //stores customer info
-        private ShoppingCartItem Product1 = null; //first product slot
+        private ShoppingCartItem Product1; //first product slot
         private ShoppingCartItem Product2; //second product slot
         private ShoppingCartItem Product3; //third product slot
 
         public ShoppingCart(Customer cust) //Constructor
         {
-            cust = Customer;
+            Customer = cust;
         }
 
         public int GetCustomerid() //returns customer id
         {
-            return Customer.GetId();
+            return Customer.GetId();  
         }
 
         public ShoppingCartItem AddProduct(Product prod, int quantity) //adds a product to the first slot that matches the inputed product or to the first empty slot if no slot matches
