@@ -8,10 +8,12 @@ namespace CKK.Logic.Models
 {
     public class ShoppingCart
     {
+        private static Product _emptySlot = new();
+
         private Customer Customer; //stores customer info
-        private ShoppingCartItem Product1; //first product slot
-        private ShoppingCartItem Product2; //second product slot
-        private ShoppingCartItem Product3; //third product slot
+        private ShoppingCartItem Product1 = new(_emptySlot, 0); //first product slot
+        private ShoppingCartItem Product2 = new(_emptySlot, 0); //second product slot
+        private ShoppingCartItem Product3 = new(_emptySlot, 0); //third product slot 
 
         public ShoppingCart(Customer cust) //Constructor
         {
@@ -47,21 +49,21 @@ namespace CKK.Logic.Models
                 }
 
                 //input product into the first available slot
-                else if (Product1 == null) //check if slot "Product1" is empty
+                else if (Product1.GetProduct() == _emptySlot) //check if slot "Product1" is empty
                 {
                     Product1.SetProduct(prod); //adds inputed product to slot "Product1"
                     Product1.SetQuantity(quantity); //adds inputed quantity to slot "Product1"
                     return Product1;
                 }
 
-                else if (Product2 == null) //check if slot "Product2" is empty
+                else if (Product2.GetProduct() == _emptySlot) //check if slot "Product2" is empty
                 {
                     Product2.SetProduct(prod); //adds inputed product to slot "Product2"
                     Product2.SetQuantity(quantity); //adds inputed quantity to slot "Product2"
                     return Product2;
                 }
 
-                else if (Product3 == null) //check if slot "Product3" is empty
+                else if (Product3.GetProduct() == _emptySlot) //check if slot "Product3" is empty
                 {
                     Product3.SetProduct(prod); //adds inputed product to slot "Product3"
                     Product3.SetQuantity(quantity); //adds inputed quantity to slot "Product3"
