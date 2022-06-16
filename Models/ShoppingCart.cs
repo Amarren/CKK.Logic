@@ -8,7 +8,7 @@ namespace CKK.Logic.Models
 {
     public class ShoppingCart
     {
-        private static Product _emptySlot = new();
+        private static Product _emptySlot = new(); //Product to mark if a slot is empty
 
         private Customer Customer; //stores customer info
         private ShoppingCartItem Product1 = new(_emptySlot, 0); //first product slot
@@ -20,7 +20,7 @@ namespace CKK.Logic.Models
             Customer = cust;
         }
 
-        public int GetCustomerid() //returns customer id
+        public int GetCustomerId() //returns customer id
         {
             return Customer.GetId();  
         }
@@ -91,43 +91,64 @@ namespace CKK.Logic.Models
         {
             if (prod == Product1.GetProduct()) //checks if inputed product matches "Product1"
             {
-                if (quantity <= Product1.GetQuantity()) //checks if inputed quantity is less than or equal to "Product1" quantity
+                if (quantity < Product1.GetQuantity() && quantity >= 0) //checks if inputed quantity is less than "Product1" quantity and greater than or equal to 0
                 {
                     Product1.SetQuantity(Product1.GetQuantity() - quantity); //reduce quantity of "Product1" by inputed quantity
                     return Product1;
                 }
 
+                else if (quantity >= Product1.GetQuantity()) //checks if inputed quantity is greater than or equal to "Product1" quantity
+                {
+                    Product1.SetProduct(_emptySlot); //removes existing product from slot "Product1"
+                    Product1.SetQuantity(0);
+                    return null;
+                }
+
                 else
                 {
-                    return null; //returns null if inputed quantity is greater than "Product1" quantity
+                    return null; //returns null if inputed quantity does not match either of the prior criteria
                 }
             }
 
             else if (prod == Product2.GetProduct()) //checks if inputed product matches "Product2"
             {
-                if (quantity <= Product2.GetQuantity()) //checks if inputed quantity is less than or equal to "Product2" quantity
+                if (quantity < Product2.GetQuantity() && quantity >= 0) //checks if inputed quantity is less than "Product2" quantity and greater than or equal to 0
                 {
                     Product2.SetQuantity(Product2.GetQuantity() - quantity); //reduce quantity of "Product2" by inputed quantity
                     return Product2;
                 }
 
+                else if (quantity >= Product2.GetQuantity()) //checks if inputed quantity is greater than or equal to "Product2" quantity
+                {
+                    Product2.SetProduct(_emptySlot); //removes existing product from slot "Product2"
+                    Product2.SetQuantity(0);
+                    return null;
+                }
+
                 else
                 {
-                    return null; //returns null if inputed quantity is greater than "Product2" quantity
+                    return null; //returns null if inputed quantity does not match either of the prior criteria
                 }
             }
 
             else if (prod == Product3.GetProduct()) //checks if inputed product matches "Product3"
             {
-                if (quantity <= Product3.GetQuantity()) //checks if inputed quantity is less than or equal to "Product3" quantity
+                if (quantity < Product3.GetQuantity() && quantity >= 0) //checks if inputed quantity is less than "Product3" quantity and greater than or equal to 0
                 {
                     Product3.SetQuantity(Product3.GetQuantity() - quantity); //reduce quantity of "Product3" by inputed quantity
                     return Product3;
                 }
 
+                else if (quantity >= Product3.GetQuantity()) //checks if inputed quantity is greater than or equal to "Product3" quantity
+                {
+                    Product3.SetProduct(_emptySlot); //removes existing product from slot "Product3"
+                    Product3.SetQuantity(0);
+                    return null;
+                }
+
                 else
                 {
-                    return null; //returns null if inputed quantity is greater than "Product3" quantity
+                    return null; //returns null if inputed quantity does not match either of the prior criteria
                 }
             }
 
