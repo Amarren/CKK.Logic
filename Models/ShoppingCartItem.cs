@@ -42,10 +42,5 @@ namespace CKK.Logic.Models
             return _product.GetPrice() * Convert.ToDecimal(_quantity);
         }
 
-        public int GetId() //returns the id of the product
-        {
-            return _product.GetId();
-        }
-
     }//end class ShoppingCartItem
 }//end namespace CKK.Logic.Models

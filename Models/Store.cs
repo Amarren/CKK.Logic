@@ -10,9 +10,13 @@ namespace CKK.Logic.Models
     {
         private int _id; //stores "Store" class id
         private string _name; //stores "Store" class name
-        private Product _product1; //first product slot
-        private Product _product2; //second product slot
-        private Product _product3; //third product slot
+        private List<StoreItem> _items = new List<StoreItem>(); //stores "StoreItem" classes
+
+        public Store(int id, string name) //constructor
+        {
+            _id = id;
+            _name = name;
+        }
 
         public int GetId() //returns "_id" when "GetId" method is called
         {
@@ -34,87 +38,71 @@ namespace CKK.Logic.Models
             _name = setname;
         }
 
-        public void AddStoreItem(Product prod) //adds the inputed product to the first available slot
+        public StoreItem AddStoreItem(Product prod, int quantity) //adds the inputed "StoreItem" or increases the quantity if the "StoreItem" already exists
         {
-            if (_product1 == null) //test if slot "_product1" is empty
+            var _item = new StoreItem(prod, quantity);
+
+            var result = _items.FirstOrDefault(i => i.GetProduct() == prod);
+
+            if (result == null)
             {
-                _product1 = prod;
+                _items.Add(_item);
+                return _item;
             }
-            
-            else if (_product2 == null) //test if slot "_product2" is empty
+
+            else //adds quantity to the matching item in the list
             {
-                _product2 = prod;
-            }
-            
-            else if(_product3 == null) //test if slot "_product3" is empty
-            {
-                _product3 = prod;
+
+                if (result.GetProduct() == _item.GetProduct() && quantity > 0)
+                {
+                    result.SetQuantity(result.GetQuantity() + quantity);
+                    return result;
+                }
+                return null;
+
             }
         }
 
-        public void RemoveStoreItem(int productNumber) //removes a product from a slot bassed on the input number
+        public StoreItem RemoveStoreItem(int id, int quantity) //removes a "StoreItem" with matching product id, amount bassed on the inputed quantity
         {
-            if (productNumber == 1) //test if input number is 1
+            var results = _items.FirstOrDefault(i => i.GetProduct().GetId() == id);
+            if (results != null)
             {
-                _product1 = null;
-            }
+                if (quantity >= results.GetQuantity()) //if given quantity is greater or equal to the amount in the list set amount to zero
+                {
+                    results.SetQuantity(0);
+                    return results;
+                }
 
-            else if (productNumber == 2) //test if input number is 2
-            {
-                _product2 = null;
+                else //subtract given quantity from amount in the list
+                {
+                    results.SetQuantity(results.GetQuantity() - quantity);
+                    return results;
+                }
             }
-
-            else if (productNumber == 3) //test if input number is 3
-            {
-                _product3 = null;
-            }
-        }
-
-        public Product GetStoreItem(int productNumber) //returns the product from a slot bassed on the input number
-        {
-            if(productNumber == 1) //test if input number is 1
-            {
-                return _product1;
-            }
-            
-            else if(productNumber == 2) //test if input number is 2
-            {
-                return _product2;
-            }
-            
-            else if(productNumber == 3) //test if input number is 3
-            {
-                return _product3;
-            }
-            
-            else //if input is invalid returns null
+            else //return null if id does not match any item in the list
             {
                 return null;
             }
         }
 
-        public Product FindStoreItemById(int id) //checks if the input id matches _product1, _product2, or _product3 in order
+        public List<StoreItem> GetStoreItems() //returns all "StoreItems" in the list
         {
-            if(_product1.GetId() == id) //test to see if the product in slot "_product1" matches input id
+            return _items;
+        }
+
+        public StoreItem FindStoreItemById(int id) //checks if the input id matches any "StoreItem's" product in the list
+        {
+            var results = _items.FirstOrDefault(i => i.GetProduct().GetId() == id);
+            if (results != null) //return "StoreItem" thats product has the matching id
             {
-                return _product1;
+                return results;
             }
 
-            else if(_product2.GetId() == id) //test to see if the product in slot "_product2" matches input id
-            {
-                return _product2;
-            }
-
-            else if(_product3.GetId() == id) //test to see if the product in slot "_product3" matches input id
-            {
-                return _product3;
-            }
-
-            else //if none of the products in any of the slots match the input id then returns null
+            else //returns null due to no matching id
             {
                 return null;
             }
-
         }
 
     }//end class Store

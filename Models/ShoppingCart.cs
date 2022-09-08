@@ -8,12 +8,9 @@ namespace CKK.Logic.Models
 {
     public class ShoppingCart
     {
-        private static Product _emptySlot = new(); //Product to mark if a slot is empty
-
         private Customer Customer; //stores customer info
-        private ShoppingCartItem Product1 = new(_emptySlot, 0); //first product slot
-        private ShoppingCartItem Product2 = new(_emptySlot, 0); //second product slot
-        private ShoppingCartItem Product3 = new(_emptySlot, 0); //third product slot 
+
+        private List<ShoppingCartItem> _products = new List<ShoppingCartItem>(); //product list
 
         public ShoppingCart(Customer cust) //Constructor
         {
@@ -22,187 +19,98 @@ namespace CKK.Logic.Models
 
         public int GetCustomerId() //returns customer id
         {
-            return Customer.GetId();  
+            return Customer.GetId();
         }
 
-        public ShoppingCartItem AddProduct(Product prod, int quantity) //adds a product to the first slot that matches the inputed product or to the first empty slot if no slot matches
+        public ShoppingCartItem AddProduct(Product prod, int quantity) //adds the inputed "ShoppingCartItem" or increases the quantity if the "ShoppingCartItem" already exists
         {
-            if (quantity > 0) //check if inputed quantity is greater than 0
+            var _item = new ShoppingCartItem(prod, quantity);
+
+            var result = _products.FirstOrDefault(i => i.GetProduct() == _item.GetProduct());
+
+            if (quantity > 0)
             {
-                //check to see if inputed product already exists in a slot
-                if (prod == Product1.GetProduct()) //check if inputed product is already in slot "Product1" 
+                if (result == null)
                 {
-                    Product1.SetQuantity(Product1.GetQuantity() + quantity); //adds inputed quantity to the existing quntity of "Product1"
-                    return Product1;
+                    _products.Add(_item);
+                    return _item;
                 }
 
-                else if (prod == Product2.GetProduct()) //check if inputed product is already in slot "Product2" 
+                else //adds quantity to the matching item in the list
                 {
-                    Product2.SetQuantity(Product2.GetQuantity() + quantity); //adds inputed quantity to the existing quntity of "Product2"
-                    return Product2;
-                }
+                    if (result.GetProduct() == _item.GetProduct())
+                    {
+                        result.SetQuantity(result.GetQuantity() + quantity);
+                        return result;
+                    }
 
-                else if (prod == Product3.GetProduct()) //check if inputed product is already in slot "Product3" 
-                {
-                    Product3.SetQuantity(Product3.GetQuantity() + quantity); //adds inputed quantity to the existing quntity of "Product3"
-                    return Product3;
-                }
-
-                //input product into the first available slot
-                else if (Product1.GetProduct() == _emptySlot) //check if slot "Product1" is empty
-                {
-                    Product1.SetProduct(prod); //adds inputed product to slot "Product1"
-                    Product1.SetQuantity(quantity); //adds inputed quantity to slot "Product1"
-                    return Product1;
-                }
-
-                else if (Product2.GetProduct() == _emptySlot) //check if slot "Product2" is empty
-                {
-                    Product2.SetProduct(prod); //adds inputed product to slot "Product2"
-                    Product2.SetQuantity(quantity); //adds inputed quantity to slot "Product2"
-                    return Product2;
-                }
-
-                else if (Product3.GetProduct() == _emptySlot) //check if slot "Product3" is empty
-                {
-                    Product3.SetProduct(prod); //adds inputed product to slot "Product3"
-                    Product3.SetQuantity(quantity); //adds inputed quantity to slot "Product3"
-                    return Product3;
-                }
-
-                else //returns null if all slots are filled with other products
-                {
-                    return null;
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
+            else
+            {
+                return null;
+            }
 
-            else //returns null if the quantity input is invalid
+        }
+
+        public ShoppingCartItem RemoveProduct(int id, int quantity) //removes a "ShoppingCartItem" with matching product id, amount bassed on the inputed quantity
+        {
+            var results = _products.FirstOrDefault(i => i.GetProduct().GetId() == id);
+            if (results != null)
+            {
+                if (quantity >= results.GetQuantity()) //if given quantity is greater or equal to the amount in the list set amount to zero
+                {
+                    results.SetQuantity(0);
+                    var tempResults = results;
+                    _products.Remove(results); //removes item from list
+                    return tempResults;
+                }
+
+                else //subtract given quantity from amount in the list
+                {
+                    results.SetQuantity(results.GetQuantity() - quantity);
+                    return results;
+                }
+            }
+            else //return null if id does not match any item in the list
             {
                 return null;
             }
         }
-
-        public ShoppingCartItem AddProduct(Product prod) //runs the first "AddProduct" method with a quantity of 1
+        public ShoppingCartItem GetProductById(int id) //checks if the input id matches any "ShoppingCartItem's" product in the list
         {
-            return AddProduct(prod, 1);
-        }
-
-        public ShoppingCartItem RemoveProduct(Product prod, int quantity)
-        {
-            if (prod == Product1.GetProduct()) //checks if inputed product matches "Product1"
+            var results = _products.FirstOrDefault(i => i.GetProduct().GetId() == id);
             {
-                if (quantity < Product1.GetQuantity() && quantity >= 0) //checks if inputed quantity is less than "Product1" quantity and greater than or equal to 0
+                if (results != null) //return ShoppingCartItem thats product has the matching id
                 {
-                    Product1.SetQuantity(Product1.GetQuantity() - quantity); //reduce quantity of "Product1" by inputed quantity
-                    return Product1;
+                    return results;
                 }
 
-                else if (quantity >= Product1.GetQuantity()) //checks if inputed quantity is greater than or equal to "Product1" quantity
+                else //returns null due to no matching id
                 {
-                    Product1.SetProduct(_emptySlot); //removes existing product from slot "Product1"
-                    Product1.SetQuantity(0);
                     return null;
                 }
-
-                else
-                {
-                    return null; //returns null if inputed quantity does not match either of the prior criteria
-                }
-            }
-
-            else if (prod == Product2.GetProduct()) //checks if inputed product matches "Product2"
-            {
-                if (quantity < Product2.GetQuantity() && quantity >= 0) //checks if inputed quantity is less than "Product2" quantity and greater than or equal to 0
-                {
-                    Product2.SetQuantity(Product2.GetQuantity() - quantity); //reduce quantity of "Product2" by inputed quantity
-                    return Product2;
-                }
-
-                else if (quantity >= Product2.GetQuantity()) //checks if inputed quantity is greater than or equal to "Product2" quantity
-                {
-                    Product2.SetProduct(_emptySlot); //removes existing product from slot "Product2"
-                    Product2.SetQuantity(0);
-                    return null;
-                }
-
-                else
-                {
-                    return null; //returns null if inputed quantity does not match either of the prior criteria
-                }
-            }
-
-            else if (prod == Product3.GetProduct()) //checks if inputed product matches "Product3"
-            {
-                if (quantity < Product3.GetQuantity() && quantity >= 0) //checks if inputed quantity is less than "Product3" quantity and greater than or equal to 0
-                {
-                    Product3.SetQuantity(Product3.GetQuantity() - quantity); //reduce quantity of "Product3" by inputed quantity
-                    return Product3;
-                }
-
-                else if (quantity >= Product3.GetQuantity()) //checks if inputed quantity is greater than or equal to "Product3" quantity
-                {
-                    Product3.SetProduct(_emptySlot); //removes existing product from slot "Product3"
-                    Product3.SetQuantity(0);
-                    return null;
-                }
-
-                else
-                {
-                    return null; //returns null if inputed quantity does not match either of the prior criteria
-                }
-            }
-
-            else
-            {
-                return null; //returns null if inputed product does not match any products in the slots "Product1, Product2, or Product3"
-            }
-        }
-        public ShoppingCartItem GetProductById(int id) //returns the product that matches the inputed id
-        {
-            if (id == Product1.GetId()) //check if the inputed id matches "Product1"
-            {
-                return Product1;
-            }
-
-            else if (id == Product2.GetId()) //check if the inputed id matches "Product2"
-            {
-                return Product2;
-            }
-
-            else if (id == Product3.GetId()) //check if the inputed id matches "Product3"
-            {
-                return Product3;
-            }
-
-            else
-            {
-                return null; //returns null if the inputed id does not match any products
             }
         }
 
         public decimal GetTotal() //returns toatl cost of all items in the shopping cart
         {
-            return Product1.GetTotal() + Product2.GetTotal() + Product3.GetTotal();
-        }
+            decimal total = 0;
 
-        public ShoppingCartItem GetProduct(int Num) //returns the product from the inputed numbered slot
-        {
-            switch (Num)
+            foreach (var item in _products)
             {
-                case 1:
-                    return Product1;
-
-                case 2:
-                    return Product2;
-
-                case 3:
-                    return Product3;
-
-                default:
-                    return null; //returns null if an invalid input is given
-
+                total += item.GetTotal();
             }
+            return total;
         }
 
+        public List<ShoppingCartItem> GetProducts() //returns all "ShoppingCartItem's" in the list
+        {
+            return _products;
+        }
     }//end class ShoppingCart
 }//end namespace CKK.Logic.Models

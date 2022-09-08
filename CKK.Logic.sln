@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKK.Logic", "CKK.Logic.cspr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{844DA9B6-FB47-4B78-91F5-3E739736E3F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKK.UnitTests", "..\CKK.UnitTests\CKK.UnitTests\CKK.UnitTests.csproj", "{95820EBA-B6DC-4376-ADE6-B80F9DCA3F11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreysKnickKnacksUnitTests", "..\CoreysKnickKnacksUnitTest\CoreysKnickKnacksUnitTests\CoreysKnickKnacksUnitTests.csproj", "{696B12AA-ED7A-44F4-A580-86CFF578233B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{DFC3ED0A-9BB8-46E1-AAD0-1F00C8C092CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFC3ED0A-9BB8-46E1-AAD0-1F00C8C092CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFC3ED0A-9BB8-46E1-AAD0-1F00C8C092CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95820EBA-B6DC-4376-ADE6-B80F9DCA3F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95820EBA-B6DC-4376-ADE6-B80F9DCA3F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95820EBA-B6DC-4376-ADE6-B80F9DCA3F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95820EBA-B6DC-4376-ADE6-B80F9DCA3F11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{696B12AA-ED7A-44F4-A580-86CFF578233B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{696B12AA-ED7A-44F4-A580-86CFF578233B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{696B12AA-ED7A-44F4-A580-86CFF578233B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{696B12AA-ED7A-44F4-A580-86CFF578233B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
