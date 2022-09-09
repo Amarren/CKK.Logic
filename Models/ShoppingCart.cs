@@ -26,27 +26,27 @@ namespace CKK.Logic.Models
         {
             var _item = new ShoppingCartItem(prod, quantity);
 
-            var result = _products.FirstOrDefault(i => i.GetProduct() == _item.GetProduct());
+            var result = _products.FirstOrDefault(i => i.GetProduct() == _item.GetProduct()); //searchs the list to see if the inputed "ShoppingCartItem" already exists in the list
 
             if (quantity > 0)
             {
-                if (result == null)
+                if (result == null) //if no matching "ShoppingCartItem" is found
                 {
                     _products.Add(_item);
                     return _item;
                 }
 
-                else //adds quantity to the matching item in the list
+                else //if a matching "ShoppingCartItem" is found
                 {
                     if (result.GetProduct() == _item.GetProduct())
                     {
-                        result.SetQuantity(result.GetQuantity() + quantity);
+                        result.SetQuantity(result.GetQuantity() + quantity); //adds quantity to the matching item in the list
                         return result;
                     }
 
                     else
                     {
-                        return null;
+                        return result;
                     }
                 }
             }
