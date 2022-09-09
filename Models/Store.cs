@@ -12,10 +12,11 @@ namespace CKK.Logic.Models
         private string _name; //stores "Store" class name
         private List<StoreItem> _items = new List<StoreItem>(); //stores "StoreItem" classes
 
-        public Store(int id, string name) //constructor
+        public Store(int id, string name, List<StoreItem> items) //constructor
         {
             _id = id;
             _name = name;
+            _items = items;
         }
 
         public int GetId() //returns "_id" when "GetId" method is called

@@ -12,9 +12,10 @@ namespace CKK.Logic.Models
 
         private List<ShoppingCartItem> _products = new List<ShoppingCartItem>(); //product list
 
-        public ShoppingCart(Customer cust) //Constructor
+        public ShoppingCart(Customer cust, List<ShoppingCartItem> products) //Constructor
         {
             Customer = cust;
+            _products = products;
         }
 
         public int GetCustomerId() //returns customer id
