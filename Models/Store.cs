@@ -40,15 +40,15 @@ namespace CKK.Logic.Models
         {
             var _item = new StoreItem(prod, quantity);
 
-            var result = _items.FirstOrDefault(i => i.GetProduct() == prod);
+            var result = _items.FirstOrDefault(i => i.GetProduct() == prod); //searchs the list to see if the inputed "StoreItem" already exists in the list
 
-            if (result == null)
+            if (result == null) //if no matching "StoreItem" is found
             {
                 _items.Add(_item);
                 return _item;
             }
 
-            else //adds quantity to the matching item in the list
+            else //adds quantity to the matching "StoreItem" in the list
             {
 
                 if (result.GetProduct() == _item.GetProduct() && quantity > 0)
@@ -56,8 +56,11 @@ namespace CKK.Logic.Models
                     result.SetQuantity(result.GetQuantity() + quantity);
                     return result;
                 }
-                return null;
 
+                else
+                {
+                    return result; ;
+                }
             }
         }
 
